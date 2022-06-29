@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Stores</string>
+
+    <string name="arg_id" translatable="false">key_id</string>
+
+    <string name="dialog_delete_title">¿Delete store?</string>
+    <string name="dialog_delete_confirm">Delete</string>
+    <string name="dialog_delete_cancel">Cancel</string>
+    <string name="dialog_options_title">¿What would you like to do?</string>
+
+    <string name="edit_store_save_message_success">Store added successfully</string>
+    <string name="edit_store_update_message_success">Updated store</string>
+    <string name="edit_store_save_message_valid">Check the required fields</string>
+    <string name="edit_store_title_edit">Edit store</string>
+    <string name="edit_store_title_add">Create store</string>
+
+    <string name="menu_save">Save</string>
+
+    <string name="fab_description">Add store</string>
+
+    <string name="helper_text_required">Required</string>
+
+    <string name="hint_store_name">Store name</string>
+    <string name="hint_store_phone">Phone</string>
+    <string name="hint_store_website">Website Url</string>
+    <string name="hint_photo_url">Image Url</string>
+
+    <string name="main_error_no_resolve">No available app found</string>
+    <string name="main_error_no_website">This store does not have a website</string>
+
+    <string name="options_item_website">Go to website</string>
+    <string name="options_item_call">Call</string>
+
+    <string name="store_image_description">Store image</string>
+</resources>
