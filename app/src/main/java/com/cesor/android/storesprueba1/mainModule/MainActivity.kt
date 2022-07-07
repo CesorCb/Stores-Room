@@ -1,49 +1,64 @@
-package com.cesor.android.storesprueba1
+package com.cesor.android.storesprueba1.mainModule
 
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.cesor.android.storesprueba1.*
+import com.cesor.android.storesprueba1.common.entities.StoreEntity
 import com.cesor.android.storesprueba1.databinding.ActivityMainBinding
+import com.cesor.android.storesprueba1.editModule.EditStoreFragment
+import com.cesor.android.storesprueba1.editModule.viewModel.EditStoreViewModel
+import com.cesor.android.storesprueba1.mainModule.adapter.OnClickListener
+import com.cesor.android.storesprueba1.mainModule.adapter.StoreAdapter
+import com.cesor.android.storesprueba1.mainModule.viewModel.MainViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 
-class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
+class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var mBinding: ActivityMainBinding
     private lateinit var mAdapter: StoreAdapter
+    private lateinit var mMainViewModel: MainViewModel
+    private lateinit var mEditStoreViewModel: EditStoreViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-
-        /*mBinding.btnSave.setOnClickListener {
-            val storeEntity = StoreEntity(name = mBinding.etName.text.toString().trim())
-            Thread{
-                StoreApplication.database.storeDao().addStore(storeEntity)
-            }.start()
-            mAdapter.add(storeEntity)
-        }*/
         mBinding.fab.setOnClickListener { launchEditFragment() }
+
+        setupViewModel()
         setupRecyclerView()
     }
 
-    private fun launchEditFragment(args: Bundle? = null) {
-        val fragment = EditStoreFragment()
-        if (args != null) fragment.arguments = args
+    private fun setupViewModel() {
+        mMainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        mMainViewModel.getStores().observe(this) { stores ->
+            mAdapter.setStores(stores)
+        }
+        mEditStoreViewModel = ViewModelProvider(this)[EditStoreViewModel::class.java]
+        mEditStoreViewModel.getShowFab().observe(this) { isVisible ->
+            if (isVisible) mBinding.fab.show() else mBinding.fab.hide()
+        }
+        mEditStoreViewModel.getStoreSelected().observe(this){ storeEntity ->
+            mAdapter.add(storeEntity)
+        }
+    }
 
+    private fun launchEditFragment(storeEntity: StoreEntity = StoreEntity()) {
+        mEditStoreViewModel.setShowFab(false)
+        mEditStoreViewModel.setStoreSelected(storeEntity)
+
+        val fragment = EditStoreFragment()
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
         fragmentTransaction.add(R.id.containerMain, fragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
-
-        hideFab()
     }
 
     private fun setupRecyclerView() {
@@ -51,38 +66,21 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
         mBinding.recyclerView.apply {
             setHasFixedSize(true)
 
-            layoutManager = GridLayoutManager(this@MainActivity, resources.getInteger(R.integer.columns))
+            layoutManager =
+                GridLayoutManager(this@MainActivity, resources.getInteger(R.integer.columns))
             adapter = mAdapter
-        }
-        getStores()
-    }
-
-    private fun getStores(){
-        doAsync {
-            val stores = StoreApplication.database.storeDao().getAllStores()
-            uiThread {
-                mAdapter.setStores(stores)
-            }
         }
     }
 
     /*
     * OnClickListener
     * */
-    override fun onClick(storeId: Long) {
-        val args = Bundle()
-        args.putLong(getString(R.string.arg_id), storeId)
-        launchEditFragment(args)
+    override fun onClick(storeEntity: StoreEntity) {
+        launchEditFragment(storeEntity)
     }
 
     override fun onFavoriteStore(storeEntity: StoreEntity) {
-        storeEntity.isFavorite = !storeEntity.isFavorite
-        doAsync {
-            StoreApplication.database.storeDao().updateStore(storeEntity)
-            uiThread {
-                updateStore(storeEntity)
-            }
-        }
+        mMainViewModel.updateStore(storeEntity)
     }
 
     override fun onDeleteStore(storeEntity: StoreEntity) {
@@ -98,7 +96,8 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
             }
             .show()
     }
-    private fun dial (phone: String){
+
+    private fun dial(phone: String) {
         val callIntent = Intent().apply {
             action = Intent.ACTION_DIAL
             data = Uri.parse("tel: $phone")
@@ -106,10 +105,10 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
         startIntent(callIntent)
     }
 
-    private fun goToWebsite (website: String){
-        if (website.isEmpty()){
+    private fun goToWebsite(website: String) {
+        if (website.isEmpty()) {
             Toast.makeText(this, R.string.main_error_no_website, Toast.LENGTH_SHORT).show()
-        }else {
+        } else {
             val websiteIntent = Intent().apply {
                 action = Intent.ACTION_VIEW
                 data = Uri.parse(website)
@@ -118,40 +117,26 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
         }
     }
 
-    private fun startIntent(intent: Intent){
-        if(intent.resolveActivity(packageManager) != null)
+    private fun startIntent(intent: Intent) {
+        if (intent.resolveActivity(packageManager) != null)
             startActivity(intent)
         else
             Toast.makeText(this, R.string.main_error_no_resolve, Toast.LENGTH_SHORT).show()
     }
 
 
-    private fun confirmDelete(storeEntity: StoreEntity){
+    private fun confirmDelete(storeEntity: StoreEntity) {
         MaterialAlertDialogBuilder(this)
             .setTitle(getString(R.string.dialog_delete_title))
             .setPositiveButton(R.string.dialog_delete_confirm) { _, _ ->
-                doAsync {
-                    StoreApplication.database.storeDao().deleteStore(storeEntity)
-                    uiThread {
-                        mAdapter.delete(storeEntity)
-                    }
-                }
+                mMainViewModel.deleteStore(storeEntity)
             }
             .setNegativeButton(R.string.dialog_delete_cancel, null)
             .show()
     }
-    /*
-    * MainAux
-    * */
-    override fun hideFab(isVisible: Boolean) {
-        if (isVisible) mBinding.fab.show() else mBinding.fab.hide()
-    }
 
-    override fun addStore(storeEntity: StoreEntity) {
-        mAdapter.add(storeEntity)
-    }
-
-    override fun updateStore(storeEntity: StoreEntity) {
-        mAdapter.update(storeEntity)
+    override fun onBackPressed() {
+        super.onBackPressed()
+        mEditStoreViewModel.setShowFab(true)
     }
 }

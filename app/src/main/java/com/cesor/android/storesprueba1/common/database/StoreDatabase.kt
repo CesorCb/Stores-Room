@@ -1,7 +1,8 @@
-package com.cesor.android.storesprueba1
+package com.cesor.android.storesprueba1.common.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.cesor.android.storesprueba1.common.entities.StoreEntity
 
 /****
  * Project: StoresPrueba1
