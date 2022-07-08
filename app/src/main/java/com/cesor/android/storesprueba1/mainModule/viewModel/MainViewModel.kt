@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cesor.android.storesprueba1.common.entities.StoreEntity
+import com.cesor.android.storesprueba1.mainModule.model.MainInteractor
 
 /****
  * Project: StoresPrueba1

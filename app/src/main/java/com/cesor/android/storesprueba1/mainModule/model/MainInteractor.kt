@@ -1,7 +1,8 @@
-package com.cesor.android.storesprueba1.mainModule.viewModel
+package com.cesor.android.storesprueba1.mainModule.model
 
 import com.cesor.android.storesprueba1.StoreApplication
 import com.cesor.android.storesprueba1.common.entities.StoreEntity
+import com.google.gson.Gson
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 

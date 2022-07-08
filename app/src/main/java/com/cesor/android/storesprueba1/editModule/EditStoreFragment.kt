@@ -89,10 +89,11 @@ class EditStoreFragment : Fragment() {
 
     private fun setupTextFields() {
         with(mBinding){
-            etPhotoUrl.addTextChangedListener { validateFields(tilPhotoUrl) }
             etPhone.addTextChangedListener { validateFields(tilPhone) }
-            etName.addTextChangedListener { validateFields(tilName)
-                loadImage(it.toString().trim())}
+            etName.addTextChangedListener { validateFields(tilName) }
+            etPhotoUrl.addTextChangedListener { validateFields(tilPhotoUrl)
+                loadImage(it.toString().trim())
+            }
         }
     }
 
@@ -100,7 +101,6 @@ class EditStoreFragment : Fragment() {
         Glide.with(this)
         .load(url)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .centerCrop()
         .into(mBinding.imgPhoto)
     }
 
