@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cesor.android.storesprueba1.common.entities.StoreEntity
+import com.cesor.android.storesprueba1.common.utils.Constants
 import com.cesor.android.storesprueba1.mainModule.model.MainInteractor
 
 /****
@@ -19,18 +20,26 @@ class MainViewModel : ViewModel() {
         storeList = mutableListOf()
         interactor = MainInteractor()
     }
-    private val stores : MutableLiveData<List<StoreEntity>> by lazy {
-        MutableLiveData<List<StoreEntity>>().also {
+    private val showProgress: MutableLiveData<Boolean> = MutableLiveData()
+
+    private val stores : MutableLiveData<MutableList<StoreEntity>> by lazy {
+        MutableLiveData<MutableList<StoreEntity>>().also {
             loadStores()
         }
     }
 
-    fun getStores() : LiveData<List<StoreEntity>>{
+    fun isShowProgress() : LiveData<Boolean>{
+        return showProgress
+    }
+
+    fun getStores() : LiveData<MutableList<StoreEntity>>{
         return  stores
     }
     private fun loadStores(){
 //      Uso de la función de tipo:
+        showProgress.value = Constants.SHOW
         interactor.getStores {
+            showProgress.value = Constants.HIDE
             stores.value = it
             storeList = it
         }

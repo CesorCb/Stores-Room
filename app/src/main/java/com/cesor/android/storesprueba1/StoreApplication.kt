@@ -32,6 +32,7 @@ class StoreApplication : Application() {
             .addMigrations(MIGRATION_1_2)
             .build()
 
+        //Volley
         storeAPI = StoreAPI(this)
     }
 }
