@@ -55,6 +55,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     kapt 'com.github.bumptech.glide:compiler:4.13.2'
 
+    //Coroutines
+    implementation"org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+
     //Volley
     implementation 'com.android.volley:volley:1.2.1'
 
