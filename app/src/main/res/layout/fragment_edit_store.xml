@@ -18,10 +18,10 @@
             android:id="@+id/tilName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_store_name"
+            android:hint="@string/hint_name"
             app:startIconDrawable="@drawable/ic_store"
             app:endIconMode="clear_text"
-            app:helperText="@string/helper_text_required"
+            app:helperText="@string/helper_required"
             app:counterMaxLength="@integer/max_name_length"
             app:counterEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -38,10 +38,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/common_padding_default"
-            android:hint="@string/hint_store_phone"
+            android:hint="@string/hint_phone"
             app:startIconDrawable="@drawable/ic_phone"
             app:endIconMode="clear_text"
-            app:helperText="@string/helper_text_required"
+            app:helperText="@string/helper_required"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPhone"
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/common_padding_default"
-            android:hint="@string/hint_store_website"
+            android:hint="@string/hint_website"
             app:startIconDrawable="@drawable/ic_insert_link"
             app:endIconMode="clear_text"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/hint_photo_url"
-                app:helperText="@string/helper_text_required"
+                app:helperText="@string/helper_required"
                 app:endIconMode="clear_text"
                 app:startIconDrawable="@drawable/ic_insert_link"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -103,7 +103,7 @@
                 android:layout_width="@dimen/thumb_photo_size"
                 android:layout_height="@dimen/thumb_photo_size"
                 android:src="@drawable/ic_image"
-                android:contentDescription="@string/store_image_description"
+                android:contentDescription="@string/description_img_photo"
                 android:layout_marginStart="@dimen/common_padding_default"/>
 
         </LinearLayout>

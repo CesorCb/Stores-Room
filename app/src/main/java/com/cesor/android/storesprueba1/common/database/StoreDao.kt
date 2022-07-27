@@ -1,5 +1,6 @@
 package com.cesor.android.storesprueba1.common.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.cesor.android.storesprueba1.common.entities.StoreEntity
 
@@ -9,19 +10,19 @@ import com.cesor.android.storesprueba1.common.entities.StoreEntity
  * Created by: César Castro on 23/06/2022 at 15:47.
  ***/
 @Dao
-interface StoreDao{
+interface StoreDao {
     @Query("SELECT * FROM StoreEntity")
-    fun getAllStores() : MutableList<StoreEntity>
+    fun getAllStores() : LiveData<MutableList<StoreEntity>>
 
-    @Query("SELECT * FROM StoreEntity WHERE id= :id")
-    fun getStoreById(id: Long) : StoreEntity
+    @Query("SELECT * FROM StoreEntity where id = :id")
+    fun getStoreById(id: Long): LiveData<StoreEntity>
 
     @Insert
-    fun addStore(storeEntity: StoreEntity) : Long
+    suspend fun addStore(storeEntity: StoreEntity) : Long
 
     @Update
-    fun updateStore(storeEntity: StoreEntity)
+    suspend fun updateStore(storeEntity: StoreEntity) : Int
 
     @Delete
-    fun deleteStore(storeEntity: StoreEntity)
+    suspend fun deleteStore(storeEntity: StoreEntity) : Int
 }

@@ -15,7 +15,7 @@
             android:id="@+id/imgPhoto"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:contentDescription="@string/store_image_description"
+            android:contentDescription="@string/description_img_photo"
             android:background="@android:color/darker_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
