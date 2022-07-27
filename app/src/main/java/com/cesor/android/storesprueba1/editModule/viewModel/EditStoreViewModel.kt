@@ -35,11 +35,7 @@ class EditStoreViewModel :ViewModel() {
         storeId = storeEntity.id
     }
 
-<<<<<<< HEAD
     fun getStoreSelected(): LiveData<StoreEntity> {
-=======
-    fun getStoreSelected(): LiveData<StoreEntity>{
->>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
         return interactor.getStoreById(storeId)
     }
 
@@ -47,11 +43,7 @@ class EditStoreViewModel :ViewModel() {
         showFab.value = isVisible
     }
 
-<<<<<<< HEAD
     fun getShowFab(): LiveData<Boolean> {
-=======
-    fun getShowFab(): LiveData<Boolean>{
->>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
         return showFab
     }
 
@@ -59,11 +51,7 @@ class EditStoreViewModel :ViewModel() {
         result.value = value
     }
 
-<<<<<<< HEAD
     fun getResult(): LiveData<Any> {
-=======
-    fun getResult(): LiveData<Any>{
->>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
         return result
     }
 
@@ -77,10 +65,6 @@ class EditStoreViewModel :ViewModel() {
 
     private fun executeAction(storeEntity: StoreEntity, block: suspend () -> Unit): Job {
         return viewModelScope.launch {
-<<<<<<< HEAD
-=======
-
->>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
             try {
                 block()
                 result.value = storeEntity

@@ -15,25 +15,14 @@ interface StoreDao {
     fun getAllStores() : LiveData<MutableList<StoreEntity>>
 
     @Query("SELECT * FROM StoreEntity where id = :id")
-<<<<<<< HEAD
     fun getStoreById(id: Long): LiveData<StoreEntity>
-=======
-    fun getStoreById(id: Long) : LiveData<StoreEntity>
->>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
 
     @Insert
     suspend fun addStore(storeEntity: StoreEntity) : Long
 
     @Update
-<<<<<<< HEAD
     suspend fun updateStore(storeEntity: StoreEntity) : Int
 
     @Delete
     suspend fun deleteStore(storeEntity: StoreEntity) : Int
-=======
-    suspend fun updateStore(storeEntity: StoreEntity): Int
-
-    @Delete
-    suspend fun deleteStore(storeEntity: StoreEntity): Int
->>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
 }

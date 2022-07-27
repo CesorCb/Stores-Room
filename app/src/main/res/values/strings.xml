@@ -36,16 +36,4 @@
 
     <string name="options_item_call">To call</string>
     <string name="options_item_website">Go to website</string>
-<<<<<<< HEAD
-=======
-    <string name="options_item_call">Call</string>
-
-    <string name="store_image_description">Store image</string>
-    <string name="main_error_get">Error al consultar datos</string>
-    <string name="main_error_insert">Error al insertar</string>
-    <string name="main_error_update">Error al actualizar</string>
-    <string name="main_error_delete">Error al eliminar</string>
-    <string name="main_error_unkwnown">Error desconocido</string>
-    <string name="main_error_unknown">Error desconocido</string>
->>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
 </resources>

@@ -34,10 +34,7 @@ android {
         jvmTarget = '1.8'
     }
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
 def room_version = "2.4.2"
 def lifecycle_version = "2.5.0"
 def coroutines_version = "1.6.4"

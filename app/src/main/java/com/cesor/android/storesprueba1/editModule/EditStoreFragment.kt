@@ -19,11 +19,7 @@ import com.cesor.android.storesprueba1.editModule.viewModel.EditStoreViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 
-<<<<<<< HEAD
 class   EditStoreFragment : Fragment() {
-=======
-class EditStoreFragment : Fragment() {
->>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
 
     private lateinit var mBinding: FragmentEditStoreBinding
     //MVVM
@@ -42,11 +38,6 @@ class EditStoreFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle? ): View {
         mBinding = FragmentEditStoreBinding.inflate(inflater, container, false)
-<<<<<<< HEAD
-=======
-
-        return mBinding.root
->>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
 
         return mBinding.root
     }
@@ -78,7 +69,6 @@ class EditStoreFragment : Fragment() {
 
             when(result){
                 is StoreEntity -> {
-<<<<<<< HEAD
                     val msgRes = if (result.id == 0L) R.string.edit_store_message_save_success
                     else R.string.edit_store_message_update_success
                     mEditStoreViewModel.setStoreSelected(mStoreEntity)
@@ -86,15 +76,6 @@ class EditStoreFragment : Fragment() {
                     Snackbar.make(mBinding.root,
                         msgRes,
                         Snackbar.LENGTH_SHORT).show()
-=======
-                    val msgRes = if (result.id == 0L) R.string.edit_store_save_message_success
-                                else R.string.edit_store_update_message_success
-                    mEditStoreViewModel.setStoreSelected(mStoreEntity)
-
-                    Snackbar.make(mBinding.root,
-                            msgRes,
-                            Snackbar.LENGTH_SHORT).show()
->>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
 
                     mActivity?.onBackPressed()
                 }
@@ -119,11 +100,7 @@ class EditStoreFragment : Fragment() {
         mActivity = activity as? MainActivity
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mActivity?.supportActionBar?.title = if (mIsEditMode) getString(R.string.edit_store_title_edit)
-<<<<<<< HEAD
         else getString(R.string.edit_store_title_add)
-=======
-                                            else getString(R.string.edit_store_title_add)
->>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
 
         setHasOptionsMenu(true)
     }
@@ -196,14 +173,9 @@ class EditStoreFragment : Fragment() {
                 isValid = false
             } else textField.error = null
         }
-<<<<<<< HEAD
 
         if (!isValid) Snackbar.make(mBinding.root,
             R.string.edit_store_message_valid,
-=======
-        if (!isValid) Snackbar.make(mBinding.root,
-            R.string.edit_store_save_message_valid,
->>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
             Snackbar.LENGTH_SHORT).show()
 
         return isValid
