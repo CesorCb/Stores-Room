@@ -4,5 +4,9 @@
     <integer name="max_phone_length">12</integer>
     <integer name="url_website_lines">2</integer>
     <integer name="photo_url_lines">4</integer>
+<<<<<<< HEAD
+=======
+    <integer name="columns">2</integer>
+>>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
     <integer name="main_columns">2</integer>
 </resources>

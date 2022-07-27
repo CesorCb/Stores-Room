@@ -16,7 +16,11 @@ import kotlinx.coroutines.withContext
  ***/
 class EditStoreInteractor {
 
+<<<<<<< HEAD
     fun getStoreById(id: Long): LiveData<StoreEntity> {
+=======
+    fun getStoreById(id: Long): LiveData<StoreEntity>{
+>>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
         return  StoreApplication.database.storeDao().getStoreById(id)
     }
 

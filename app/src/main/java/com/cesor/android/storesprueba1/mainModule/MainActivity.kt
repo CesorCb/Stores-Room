@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.cesor.android.storesprueba1.*
+import com.cesor.android.storesprueba1.R
 import com.cesor.android.storesprueba1.common.entities.StoreEntity
 import com.cesor.android.storesprueba1.common.utils.TypeError
 import com.cesor.android.storesprueba1.databinding.ActivityMainBinding
@@ -19,7 +19,10 @@ import com.cesor.android.storesprueba1.mainModule.adapter.StoreListAdapter
 import com.cesor.android.storesprueba1.mainModule.viewModel.MainViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
 class MainActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var mBinding: ActivityMainBinding
@@ -81,7 +84,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         fragmentTransaction.commit()
     }
 
+<<<<<<< HEAD
     private fun setupRecylcerView() {
+=======
+    private fun setupRecyclerView() {
+>>>>>>> 4928e1c6a1e69c228df54dff3ef6de12ca4bcb8e
         mAdapter = StoreListAdapter(this)
         mGridLayout = GridLayoutManager(this, resources.getInteger(R.integer.main_columns))
 
