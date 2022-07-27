@@ -9,7 +9,7 @@ import com.cesor.android.storesprueba1.common.entities.StoreEntity
  * From: com.cesor.android.storesprueba1
  * Created by: César Castro on 23/06/2022 at 15:50.
  ***/
-@Database(entities = [StoreEntity::class], version = 2)
+@Database(entities = [StoreEntity::class], version = 3)
 abstract class StoreDatabase : RoomDatabase(){
     abstract fun storeDao() : StoreDao
 }
