@@ -1,4 +1,4 @@
-package com.cesor.android.storesprueba1
+package com.cesor.android.storesprueba1.mainModule.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.cesor.android.storesprueba1.R
+import com.cesor.android.storesprueba1.common.entities.StoreEntity
 import com.cesor.android.storesprueba1.databinding.ItemStoreBinding
 
 /****
@@ -43,33 +45,29 @@ class StoreAdapter(private var stores: MutableList<StoreEntity>, private var lis
 
     override fun getItemCount(): Int = stores.size
 
-    fun add(storeEntity: StoreEntity) {
-        if (!stores.contains(storeEntity)) {
-            stores.add(storeEntity)
-            notifyItemInserted(stores.size-1)
-        }
-
-    }
-
     fun setStores(stores: MutableList<StoreEntity>) {
         this.stores = stores
         notifyDataSetChanged()
 
     }
 
-    fun update(storeEntity: StoreEntity) {
+    fun add(storeEntity: StoreEntity) {
+
+        if (storeEntity.id != 0L) {
+            if (!stores.contains(storeEntity)) {
+                stores.add(storeEntity)
+                notifyItemInserted(stores.size-1)
+             } else {
+                 update(storeEntity)
+             }
+        }
+    }
+
+    private fun update(storeEntity: StoreEntity) {
         val index = stores.indexOf(storeEntity)
         if (index != -1){
             stores[index] = storeEntity
             notifyItemChanged(index)
-        }
-    }
-
-    fun delete(storeEntity: StoreEntity) {
-        val index = stores.indexOf(storeEntity)
-        if (index != -1){
-            stores.removeAt(index)
-            notifyItemRemoved(index)
         }
     }
 
@@ -78,7 +76,7 @@ class StoreAdapter(private var stores: MutableList<StoreEntity>, private var lis
 
         fun setListener(storeEntity: StoreEntity){
             with(mBinding.root){
-                setOnClickListener { listener.onClick(storeEntity.id) }
+                setOnClickListener { listener.onClick(storeEntity) }
                 setOnLongClickListener {
                     listener.onDeleteStore(storeEntity)
                     true}
